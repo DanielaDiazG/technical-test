@@ -1,11 +1,24 @@
 "use client";
-import { Button, Grid, Stack } from "@mui/material";
 import SignIn from "@/components/SignIn";
+import useUserStore from "@/hooks/useUserStore";
+import constants from '@/utils/constants';
+import {useRouter} from 'next/navigation';
+import styles from './page.module.css'
+
+const {USER_STATUS} = constants;
 
 export default function Home() {
-  return (
-      <main>
-          <SignIn/>
-      </main>
-  );
+    const {createUser, userStatus} = useUserStore();
+    const router = useRouter();
+
+    if (userStatus === USER_STATUS.LOGGED_IN) {
+        router.push('/posts')
+
+    } else if (userStatus === USER_STATUS.LOGGED_OUT) {
+        return (
+            <main className={styles.main}>
+                <SignIn createUser={createUser} />
+            </main>
+        );
+    }
 }

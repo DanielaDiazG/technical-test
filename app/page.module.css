@@ -1,0 +1,12 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 80vw;
+    overflow-x: hidden;
+    height: 100vh;
+    padding-top: 2%;
+    margin: auto;
+}
+
